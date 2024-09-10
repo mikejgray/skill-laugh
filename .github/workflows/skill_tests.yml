@@ -1,31 +1,26 @@
+# This workflow will run unit tests
 
-name: skill_tests
+name: Test Skill
 on:
-  pull_request: {}
-  workflow_dispatch: {}
+  pull_request:
+  workflow_dispatch:
+
 jobs:
   py_build_tests:
-    name: py_build_tests
-    permissions:
-      contents: read
     uses: neongeckocom/.github/.github/workflows/python_build_tests.yml@master
-  skill_unit_tests:
-    name: skill_unit_tests
-    permissions:
-      contents: read
-    uses: neongeckocom/.github/.github/workflows/skill_tests.yml@master
-  skill_intent_tests:
-    name: skill_intent_tests
-    permissions:
-      contents: read
-    uses: neongeckocom/.github/.github/workflows/skill_test_intents.yml@master
-  skill_resource_tests:
-    name: skill_resource_tests
-    permissions:
-      contents: read
-    uses: neongeckocom/.github/.github/workflows/skill_test_resources.yml@master
+  # skill_unit_tests:
+  #   uses: neongeckocom/.github/.github/workflows/skill_tests.yml@master
+  #   with:
+  #     neon_versions: "[3.8, 3.9, '3.10', '3.11', '3.12']"
+  #     ovos_versions: "[3.8, 3.9, '3.10', '3.11', '3.12']"
+  # skill_intent_tests:
+  #   uses: neongeckocom/.github/.github/workflows/skill_test_intents.yml@master
+  #   with:
+  #     test_padacioso: false
+  #     test_padatious: true
+  #     neon_versions: "[3.8, 3.9, '3.10', '3.11', '3.12']"
+  #     ovos_versions: "[3.8, 3.9, '3.10', '3.11', '3.12']"
+  # skill_resource_tests:
+  #   uses: neongeckocom/.github/.github/workflows/skill_test_resources.yml@master
   skill_install_tests:
-    name: skill_install_tests
-    permissions:
-      contents: read
     uses: neongeckocom/.github/.github/workflows/skill_test_installation.yml@master

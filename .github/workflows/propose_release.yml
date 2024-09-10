@@ -1,5 +1,4 @@
-
-name: propose_release
+name: Propose Stable Release
 on:
   workflow_dispatch:
     inputs:
@@ -10,14 +9,8 @@ on:
           - build
           - minor
           - major
-          - patch
-          - alpha
 jobs:
   update_version:
-    name: update_version
-    permissions:
-      contents: write
-      packages: write
     uses: neongeckocom/.github/.github/workflows/propose_semver_release.yml@master
     with:
       release_type: ${{ inputs.release_type }}
@@ -26,12 +19,11 @@ jobs:
       build_var: VERSION_BUILD
       minor_var: VERSION_MINOR
       major_var: VERSION_MAJOR
-      update_changelog: true
+      update_changelog: True
       branch: dev
+
   pull_changes:
     needs: update_version
-    permissions:
-      contents: write
     uses: neongeckocom/.github/.github/workflows/pull_master.yml@master
     with:
       pr_assignee: ${{ github.actor }}
